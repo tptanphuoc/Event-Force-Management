@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="Event Details" variant="Narrow" icon-name="standard:event">
+        <lightning-tabset active-tab-value="event">
+            <lightning-tab label="Event Details" value="event">
+                <div class="slds-m-around_small">
+                    <lightning-record-form columns="2" layout-type="Full" object-api-name="Event__c"
+                        record-id={recordId} mode="readonly"></lightning-record-form>
+                </div>
+            </lightning-tab>
+            <lightning-tab label="Event Speakers" value="speaker" onactive={handleSpeakerActive}>
+                <template lwc:if={speakerList}>
+                    <lightning-datatable 
+                    show-row-number-column
+                    hide-checkbox-column
+                    key-field="id" 
+                    data={speakerList} 
+                    columns={speakerColumnList}></lightning-datatable>
+                </template>
+                <template if:false={errorMessage}>
+                    <template if:false={speakerList}>
+                        There is no Speaker associated with this Event
+                    </template>
+                </template>
+            </lightning-tab>
+            <lightning-tab label="Event Location" value="location" onactive={handleLocationActive}>
+                <template lwc:if={eventRecord}>
+                    <div class="slds-m-around_large">
+                        <strong>Location Landmark: {eventRecord.Location__r.Land_Mark__c}</strong>
+                        <lightning-formatted-address title="Event Location"
+                            city={eventRecord.Location__r.City__c}
+                            province={eventRecord.Location__r.State__c}
+                            postal-code={eventRecord.Location__r.Postal_Code__c}
+                            country={eventRecord.Location__r.Country__c}
+                            street={eventRecord.Location__r.Street__c}>
+                        </lightning-formatted-address>
+                    </div>
+                </template>
+
+            </lightning-tab>
+            <lightning-tab label="Event Attendees" value="attendee" onactive={handleAttendeesActive}>
+                <template lwc:if={attendeeList}>
+                    <lightning-datatable 
+                    show-row-number-column
+                    hide-checkbox-column
+                    key-field="id" 
+                    data={attendeeList} 
+                    columns={attendeeColumnList}></lightning-datatable>
+                </template>
+                <template if:false={errorMessage}>
+                    <template if:false={attendeeColumnList}>
+                        There is no Speaker associated with this Event
+                    </template>
+                </template>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>
