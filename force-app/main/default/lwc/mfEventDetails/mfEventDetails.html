@@ -8,6 +8,13 @@
                 </div>
             </lightning-tab>
             <lightning-tab label="Event Speakers" value="speaker" onactive={handleSpeakerActive}>
+                <div class="slds-m-around_small">
+                    <lightning-button 
+                      variant="brand"
+                      label="New Speaker" 
+                      onclick={createSpeaker} 
+                    ></lightning-button>
+                </div>
                 <template lwc:if={speakerList}>
                     <lightning-datatable 
                     show-row-number-column
@@ -38,6 +45,13 @@
 
             </lightning-tab>
             <lightning-tab label="Event Attendees" value="attendee" onactive={handleAttendeesActive}>
+                <div class="slds-m-around_small">
+                    <lightning-button 
+                      variant="brand"
+                      label="New Attendee" 
+                      onclick={createAttendee} 
+                    ></lightning-button>
+                </div>
                 <template lwc:if={attendeeList}>
                     <lightning-datatable 
                     show-row-number-column

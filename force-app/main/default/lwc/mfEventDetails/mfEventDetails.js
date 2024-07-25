@@ -3,6 +3,8 @@ import { api, LightningElement, track } from 'lwc';
 import getSpeakers from '@salesforce/apex/EventDetailsController.getSpeakers';
 import getLocationDetails from '@salesforce/apex/EventDetailsController.getLocationDetails';
 import getAttendees from '@salesforce/apex/EventDetailsController.getAttendees';
+import {NavigationMixin} from 'lightning/navigation';
+import {encodeDefaultFieldValues} from 'lightning/pageReferenceUtils';
 
 // Prepare columns to display for Speaker tab
 const speakerColumns = [
@@ -20,7 +22,7 @@ const attendeeColumns = [
     { label: 'Attendee Location', fieldName: 'Location'}
 ];
 
-export default class MfEventDetails extends LightningElement {
+export default class MfEventDetails extends NavigationMixin(LightningElement) {
     @api recordId;
     @track speakerList;
     @track eventRecord;
@@ -85,5 +87,37 @@ export default class MfEventDetails extends LightningElement {
             this.attendeeList = undefined;
             this.errorMessage = error;
         }
+    }
+
+    createSpeaker() {
+        const defaultValues = encodeDefaultFieldValues({
+            Event__c: this.recordId
+        });
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'EventSpeakers__c',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: defaultValues
+            }
+        });
+    }
+
+    createAttendee() {
+        const defaultValues = encodeDefaultFieldValues({
+            Event__c: this.recordId
+        });
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Event_Attendee__c',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: defaultValues
+            }
+        });
     }
 }

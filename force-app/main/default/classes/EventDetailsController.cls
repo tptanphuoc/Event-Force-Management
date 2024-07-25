@@ -15,7 +15,7 @@ public with sharing class EventDetailsController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static List<EventSpeakers__c> getSpeakers(String eventId){
         try {
             List<EventSpeakers__c> speakerList = [SELECT Id, Name, Speaker__c, 
@@ -42,13 +42,14 @@ public with sharing class EventDetailsController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static List<Event_Attendee__c> getAttendees(String eventId){
         try {
             List<Event_Attendee__c> attendeeList = [SELECT Id, Name,
             Attendee__c, Attendee__r.Name, Attendee__r.Email__c, Attendee__r.Company_Name__c,
             Attendee__r.Location__c, Attendee__r.Location__r.Name 
             FROM Event_Attendee__c WHERE Event__c =: eventId WITH SECURITY_ENFORCED];
+            System.debug('ATTENTDEELIST:  >>' + attendeeList);
             return attendeeList;
         } catch (Exception e) {
             TransactionLogHandler.doHandleException(e, 'EventDetailsController');
