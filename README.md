@@ -1,4 +1,46 @@
-# Salesforce DX Project: Next Steps
+# EventForce Management
+
+Description:
+
+This project includes the following technologies:
+
+* Salesforce Admin
+
+  - Objects & Relationships
+
+  - Sharing Rules, OWD & Roles
+
+- Community
+
+- Salesforce Development
+
+  - Apex Trigger
+
+  - Apex Batch Apex
+
+  - Future Method
+
+  - Integration (Apex REST & SmartyAPI)
+
+- Lightning Web Component
+  - Events
+
+  - Custom Lookup
+
+  - Calling Apex in bot wire & imperative apex
+
+  - Using Web Component in Community
+
+  - Navigation & Toast Events
+
+  - etc.
+
+- Reusable Error Handling Framework
+
+- Salesforce Community - For the project, we are using Customer Community 
+
+
+## Salesforce DX Project: Next Steps
 
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
