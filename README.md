@@ -1,6 +1,6 @@
 # EventForce Management
 
-Description:
+This project aims to develop a sophisticated event management application on the Salesforce platform, leveraging the power of Lightning Web Components (LWC) to create a seamless and intuitive user experience. The application will streamline and automate various aspects of event planning, coordination, and execution within a company.
 
 This project includes the following technologies:
 
